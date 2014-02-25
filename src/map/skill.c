@@ -3713,7 +3713,7 @@ int skill_castend_nodamage_id( struct block_list *src, struct block_list *bl,int
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		if(sd){
 			pc_setsit(sd);
-			clif_sitting(sd);
+			clif_sitting(&sd->bl, 1);
 		}
 		status_change_start(bl,SkillStatusChangeTable[skillid],skilllv,0,0,0,skill_get_time(skillid,skilllv),0 );
 		break;
@@ -11018,7 +11018,7 @@ static int skill_calc_produce_rate(struct map_session_data *sd, int idx, int sc,
 		break;
 
 	case PRD_ORE:		// zÎ
-		make_per += sd->status.job_level*20 + dex+10 + luk*10 + skill_lv*500;
+		make_per += sd->status.job_level*20 + dex*10 + luk*10 + skill_lv*500;
 		if(battle_config.wp_rate != 100)
 			make_per = make_per * battle_config.wp_rate/100;
 		break;
