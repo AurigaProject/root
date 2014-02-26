@@ -266,7 +266,7 @@ extern struct Battle_Config {
 	int weapon_drop_rate;
 	int other_drop_rate;
 
-	int Item_res;
+	int item_res;
 	int next_exp_limit;
 	int heal_counterstop;
 	int finding_ore_drop_rate;
@@ -523,6 +523,8 @@ extern struct Battle_Config {
 	int baby_copy_skilltree;
 	int skill_autospell_delay_enable;
 	int bonus_autospell_delay_enable;
+
+	int merc_speed_is_same_as_pc;
 } battle_config;
 
 int battle_config_read(const char *cfgName);
