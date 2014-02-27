@@ -227,7 +227,7 @@ struct skill_condition {
 };
 
 int skill_check_condition(struct block_list *bl, int type);
-int skill_check_condition2(struct block_list *bl, struct skill_condition *sc, int type);
+int skill_check_condition2(struct block_list *bl, struct skill_condition *cnd, int type);
 
 // アイテム作成
 int skill_can_produce_mix(struct map_session_data *sd, int idx, int trigger);
@@ -1035,7 +1035,7 @@ enum {
 	MER_AUTOBERSERK,
 	MER_DECAGI,
 	MER_SCAPEGOAT,
-	MER_LEXDEVINA,
+	MER_LEXDIVINA,
 	MER_ESTIMATION = 8237,
 
 	// ギルドスキルはmmo.hで定義
