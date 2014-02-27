@@ -1179,12 +1179,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 	}
 
 	/* ４．右手・左手判定 */
-	calc_flag.rh = 1;	// 基本は右手のみ
-	if(src_sd) {
+	calc_flag.rh = 1;		// 基本は右手のみ
+	if(src_sd && skill_num == 0) {	// スキル攻撃は常に右手を参照
 		if(src_sd->weapontype1 == WT_FIST && src_sd->weapontype2 > WT_FIST) {	// 左手のみ武器装備
 			calc_flag.rh = 0;
 			calc_flag.lh = 1;
-		} else if(skill_num == 0 && src_sd->status.weapon > WT_HUUMA) {		// 通常攻撃で二刀流（スキル攻撃に左手は乗らない）
+		} else if(src_sd->status.weapon > WT_HUUMA || src_sd->status.weapon == WT_KATAR) {	// 二刀流
 			calc_flag.lh = 1;
 		}
 	}
@@ -4683,7 +4683,7 @@ int battle_config_read(const char *cfgName)
 		{ "drop_rate0item",                     &battle_config.drop_rate0item,                     0        },
 		{ "base_exp_rate",                      &battle_config.base_exp_rate,                      100      },
 		{ "job_exp_rate",                       &battle_config.job_exp_rate,                       100      },
-		{ "death_penalty_type",                 &battle_config.death_penalty_type,                 2        },
+		{ "death_penalty_type",                 &battle_config.death_penalty_type,                 3        },
 		{ "death_penalty_base",                 &battle_config.death_penalty_base,                 100      },
 		{ "death_penalty_job",                  &battle_config.death_penalty_job,                  100      },
 		{ "zeny_penalty",                       &battle_config.zeny_penalty,                       0        },
@@ -5019,7 +5019,7 @@ int battle_config_read(const char *cfgName)
 		{ "hermode_no_walking",                 &battle_config.hermode_no_walking,                 0        },
 		{ "hermode_gvg_only",                   &battle_config.hermode_gvg_only,                   1        },
 		{ "atcommand_go_significant_values",    &battle_config.atcommand_go_significant_values,    22       },
-		{ "redemptio_penalty_type",             &battle_config.redemptio_penalty_type,             0        },
+		{ "redemptio_penalty_type",             &battle_config.redemptio_penalty_type,             1        },
 		{ "allow_weaponrearch_to_weaponrefine", &battle_config.allow_weaponrearch_to_weaponrefine, 0        },
 		{ "boss_no_knockbacking",               &battle_config.boss_no_knockbacking,               1        },
 		{ "boss_no_element_change",             &battle_config.boss_no_element_change,             0        },
