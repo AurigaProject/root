@@ -205,7 +205,7 @@ enum {
 	SC_AUTOSPELL            = 65,
 	//
 	//
-	SC_SPEARSQUICKEN        = 68,
+	SC_SPEARQUICKEN         = 68,
 	//
 	//
 	//
@@ -518,6 +518,7 @@ enum {
 	SC_STONESKIN            = 381,
 	SC_ANTIMAGIC            = 382,
 	SC_WEAPONQUICKEN        = 383,
+	SC_HAPPY                = 384,
 
 	// startでは使えないresistをアイテム側で全てクリアするための物
 	SC_RESISTCLEAR          = 1001,
@@ -588,7 +589,7 @@ enum {
 	SI_PROVIDENCE       = 61,
 	SI_DEFENDER         = 62,
 	SI_AUTOSPELL        = 65,
-	SI_SPEARSQUICKEN    = 68,
+	SI_SPEARQUICKEN     = 68,
 	SI_EXPLOSIONSPIRITS = 86,
 	SI_STEELBODY        = 87,
 	SI_COMBO            = 89,
@@ -660,6 +661,7 @@ enum {
 	SI_CLOSECONFINE2    = 201,
 	SI_MADNESSCANCEL    = 203,
 	SI_GATLINGFEVER     = 204,
+	SI_HAPPY            = 205,
 	SI_UTSUSEMI         = 206,
 	SI_BUNSINJYUTSU     = 207,
 	SI_NEN              = 208,

@@ -217,7 +217,7 @@ void skill_stop_dancing(struct block_list *src, int flag);
 // ârè•ÉLÉÉÉìÉZÉã
 int skill_castcancel(struct block_list *bl,int type);
 
-int skill_gangsterparadise(struct map_session_data *sd ,int type);
+int skill_sit(struct map_session_data *sd, int type);
 void skill_autospell(struct map_session_data *sd, int skillid);
 void skill_devotion(struct map_session_data *msd);
 void skill_devotion2(struct block_list *bl,int crusader);
@@ -491,8 +491,8 @@ enum {
 	NPC_CHANGEWIND,
 	NPC_CHANGEPOISON,
 	NPC_CHANGEHOLY,
-	NPC_CHANGETELEKINESIS,
 	NPC_CHANGEDARKNESS,
+	NPC_CHANGETELEKINESIS,
 	NPC_CRITICALSLASH,
 	NPC_COMBOATTACK,
 	NPC_GUIDEDATTACK,
