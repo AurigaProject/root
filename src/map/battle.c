@@ -2625,7 +2625,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			wd.damage += hit_damage * 3;
 		} else {
 			wd.damage += hit_damage;
-			if(calc_flag.lh) {
+			if(calc_flag.lh)
 				wd.damage2 += hit_bonus + src_sd->star_ + src_sd->ranker_weapon_bonus_;
 		}
 	}
@@ -2712,7 +2712,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			wd.damage2 = 1;
 	}
 
-	if( target_sd && target_sd->special_state.no_weapon_damage && skill_num != CR_GRANDCROSS && skill_num != NPC_GRANDDARKNESS)
+	if( target_sd && target_sd->special_state.no_weapon_damage && skill_num != CR_GRANDCROSS && skill_num != NPC_GRANDDARKNESS) {
 		// bNoWeaponDamageでグランドクロスじゃない場合はダメージが0
 		wd.damage = wd.damage2 = 0;
 	}
@@ -3109,9 +3109,8 @@ static struct Damage battle_calc_magic_attack(struct block_list *bl,struct block
 		int s_class = status_get_class(bl);
 		cardfix = 100;
 		cardfix = cardfix*(100-tsd->subele[ele])/100;				// 属性によるダメージ耐性
-		cardfix = cardfix*(100-tsd->subrace[race])/100;				// 種族によるダメージ耐性
 		cardfix = cardfix*(100-tsd->subenemy[status_get_enemy_type(bl)])/100;	// 敵タイプによるダメージ耐性
-		cardfix = cardfix*(100-tsd->subsize[status_get_size(bl)])/100;		// サイズによるダメージ耐性
+		cardfix = cardfix*(100-tsd->magic_subsize[status_get_size(bl)])/100;		// サイズによるダメージ耐性
 		cardfix = cardfix*(100-tsd->magic_subrace[race])/100;
 		if(status_get_mode(bl) & 0x20)
 			cardfix = cardfix*(100-tsd->magic_subrace[RCT_BOSS])/100;
