@@ -2941,7 +2941,7 @@ int skill_castend_damage_id( struct block_list* src, struct block_list *bl,int s
 					bl = src;
 					break;
 				case NJ_HYOUSYOURAKU:		/* •X’Œ—Ž‚µ */
-					ar = 7;
+					ar = 3;
 					skill_area_temp[2] = bl->x;
 					skill_area_temp[3] = bl->y;
 					bl = src;
@@ -6183,7 +6183,7 @@ int skill_castend_pos2( struct block_list *src, int x,int y,int skillid,int skil
 		break;
 	case CR_CULTIVATION:	/* A•¨Í”| */
 		if(sd) {
-			int id, n = (skilllv > 2)? 1: 0;
+			int id, n = (skilllv >= 2)? 1: 0;
 			int summons[2][6] = {
 				{ 1084, 1085, 1084, 1085, 1084, 1085 },
 				{ 1078, 1079, 1080, 1081, 1082, 1083 }
