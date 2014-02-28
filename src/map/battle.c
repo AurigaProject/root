@@ -1344,6 +1344,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			s_ele = s_ele_ = ELE_NEUTRAL;
 			break;
 		case AM_ACIDTERROR:		// アシッドテラー
+		case CR_ACIDDEMONSTRATION:	// アシッドデモンストレーション
 			calc_flag.hitrate = 1000000;
 			calc_flag.dist = 1;
 			s_ele = s_ele_ = ELE_NEUTRAL;
@@ -1352,7 +1353,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		case NPC_GUIDEDATTACK:		// 必中攻撃
 		case MO_INVESTIGATE:		// 発勁
 		case MO_EXTREMITYFIST:		// 阿修羅覇鳳拳
-		case CR_ACIDDEMONSTRATION:	// アシッドデモンストレーション
 		case NJ_ISSEN:			// 一閃
 			calc_flag.hitrate = 1000000;
 			s_ele = s_ele_ = ELE_NEUTRAL;
@@ -5346,7 +5346,7 @@ int battle_config_read(const char *cfgName)
  */
 int do_init_battle(void)
 {
-	add_timer_func_list(battle_delay_damage_sub, "battle_delay_damage_sub");
+	add_timer_func_list(battle_delay_damage_sub);
 
 	return 0;
 }
