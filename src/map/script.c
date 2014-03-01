@@ -1697,7 +1697,7 @@ static void read_constdb(void)
 		return;
 	}
 	while(fgets(line,1020,fp)) {
-		if(line[0] == '\0' || line[0] == '\n')
+		if(line[0] == '\0' || line[0] == '\r' || line[0] == '\n')
 			continue;
 		if(line[0] == '/' && line[1] == '/')
 			continue;
@@ -2391,7 +2391,7 @@ static void push_copy(struct script_stack *stack,int pos)
 		push_str(stack,C_STR,(unsigned char *)aStrdup(stack->stack_data[pos].u.str));
 		break;
 	case C_PTR:
-		push_str(stack,C_PTR,stack->stack_data[pos].u.ptr);
+		push_ptr(stack,C_PTR,stack->stack_data[pos].u.ptr);
 		break;
 	default:
 		push_val2(
@@ -2453,7 +2453,7 @@ void script_free_stack(struct script_stack *stack)
 		if( stack->stack_data[i].type == C_STR ) {
 			aFree( stack->stack_data[i].u.str );
 		} else if( i > 0 && stack->stack_data[i].type == C_RETINFO ) {
-			struct linkdb_node** n = (struct linkdb_node**)stack->stack_data[i-1].u.num;
+			struct linkdb_node** n = (struct linkdb_node**)stack->stack_data[i-1].u.ptr;
 			script_free_vars( n );
 			aFree( n );
 		}
@@ -3403,7 +3403,7 @@ int script_config_read(const char *cfgName)
 		return 1;
 	}
 	while(fgets(line, 1020, fp)) {
-		if(line[0] == '\0' || line[0] == '\n')
+		if(line[0] == '\0' || line[0] == '\r' || line[0] == '\n')
 			continue;
 		if(line[0] == '/' && line[1] == '/')
 			continue;
