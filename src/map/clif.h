@@ -24,7 +24,7 @@
 
 #include "map.h"
 
-#define MAX_PACKET_DB 0x800
+#define MAX_PACKET_DB 0x850
 
 struct packet_db {
 	short len;
@@ -237,6 +237,7 @@ void clif_msgstringtable(struct map_session_data *sd, int line);
 void clif_send_equipopen(struct map_session_data *sd);
 void clif_skill_cooldown(struct map_session_data *sd, int skillid, unsigned int tick);
 void clif_mshield(struct map_session_data *sd, int num);
+void clif_showevent(struct map_session_data *sd, struct block_list *bl, short state, short type);
 
 // vending
 void clif_openvendingreq(struct map_session_data *sd, int num);
