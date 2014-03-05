@@ -3076,6 +3076,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			else
 				asflag += EAS_SHORT;
 		}
+
+		// アクティブアイテムは物理攻撃スキルでも発動する
+		pc_activeitem_start(src_sd,asflag+EAS_NORMAL,tick);
+
 		// weapon_attack_autospell無効時でも、融合状態であれば温もりにオートスペルが発動する
 		if(battle_config.weapon_attack_autospell || ((skill_num == SG_SUN_WARM || skill_num == SG_MOON_WARM || skill_num == SG_STAR_WARM) && sc && sc->data[SC_FUSION].timer != -1))
 			asflag += EAS_NORMAL;
@@ -3083,7 +3087,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			asflag += EAS_SKILL;
 
 		skill_bonus_autospell(&src_sd->bl,target,asflag,tick,0);
-		pc_activeitem_start(src_sd,asflag,tick);
 	}
 
 	/* 36．太陽と月と星の融合 HP2%消費 */
@@ -4125,6 +4128,10 @@ int battle_weapon_attack( struct block_list *src,struct block_list *target,unsig
 
 		if(battle_config.weapon_reflect_drain && src != target)
 			battle_attack_drain(target,rsdamage,0,battle_config.weapon_reflect_drain_enable_type);
+
+		// スキルの反射ダメージのアクティブアイテム
+		if(battle_config.weapon_reflect_autospell && tsd)
+			pc_activeitem_start(tsd,EAS_ATTACK,gettick());
 	}
 	if(ridamage > 0) {
 		battle_delay_damage(tick+wd.amotion,target,src,ridamage,0,0,0);
@@ -4135,6 +4142,10 @@ int battle_weapon_attack( struct block_list *src,struct block_list *target,unsig
 
 		if(battle_config.weapon_reflect_drain && src != target)
 			battle_attack_drain(target,ridamage,0,battle_config.weapon_reflect_drain_enable_type);
+
+		// アイテムの反射ダメージのアクティブアイテム
+		if(battle_config.weapon_reflect_autospell && tsd)
+			pc_activeitem_start(tsd,EAS_ATTACK,gettick());
 	}
 
 	// 対象にステータス異常がある場合
@@ -4640,6 +4651,11 @@ int battle_skill_attack(int attack_type,struct block_list* src,struct block_list
 				if(battle_config.weapon_reflect_drain && src != bl)
 					battle_attack_drain(bl,rdamage,0,battle_config.weapon_reflect_drain_enable_type);
 			}
+			if(tsd) {
+				// 反射ダメージのアクティブアイテム
+				if(battle_config.weapon_reflect_autospell)
+					pc_activeitem_start(tsd,asflag,gettick());
+			}
 		} else {
 			battle_damage(src,src,rdamage,skillid,skilllv,0);
 			if(sd) {
@@ -4649,6 +4665,11 @@ int battle_skill_attack(int attack_type,struct block_list* src,struct block_list
 				}
 				if(battle_config.magic_reflect_drain && src != bl)
 					battle_attack_drain(bl,rdamage,0,battle_config.magic_reflect_drain_enable_type);
+			}
+			if(tsd) {
+				// 反射ダメージのアクティブアイテム
+				if(battle_config.weapon_reflect_autospell)
+					pc_activeitem_start(tsd,asflag,gettick());
 			}
 		}
 	}
@@ -5372,7 +5393,7 @@ int battle_config_read(const char *cfgName)
 		{ "gvg_trade_request_refused",          &battle_config.gvg_trade_request_refused,          1        },
 		{ "pvp_trade_request_refused",          &battle_config.pvp_trade_request_refused,          1        },
 		{ "skill_removetrap_type",              &battle_config.skill_removetrap_type,              0        },
-		{ "disp_experience",                    &battle_config.disp_experience,                    0        },
+		{ "disp_experience",                    &battle_config.disp_experience,                    1        },
 		{ "castle_defense_rate",                &battle_config.castle_defense_rate,                100      },
 		{ "riding_weight",                      &battle_config.riding_weight,                      10000    },
 		{ "hp_rate",                            &battle_config.hp_rate,                            100      },
@@ -5643,7 +5664,7 @@ int battle_config_read(const char *cfgName)
 		{ "gm_perfect_hide",                    &battle_config.gm_perfect_hide,                    0        },
 		{ "pcview_mob_clear_type",              &battle_config.pcview_mob_clear_type,              1        },
 		{ "party_item_share_type",              &battle_config.party_item_share_type,              1        },
-		{ "party_item_share_show",              &battle_config.party_item_share_show,              0        },
+		{ "party_item_share_show",              &battle_config.party_item_share_show,              1        },
 		{ "pk_murderer_point",                  &battle_config.pk_murderer_point,                  100      },
 		{ "sg_miracle_rate",                    &battle_config.sg_miracle_rate,                    1        },
 		{ "sg_angel_rate",                      &battle_config.sg_angel_rate,                      2        },

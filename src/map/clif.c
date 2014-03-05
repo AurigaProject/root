@@ -437,7 +437,7 @@ void clif_authok(struct map_session_data *sd)
 	WFIFOPOS(fd,6,sd->bl.x,sd->bl.y,sd->dir);
 	WFIFOB(fd,9)=5;
 	WFIFOB(fd,10)=5;
-	WFIFOW(fd,12)=0;	// font
+	WFIFOW(fd,11)=0;	// font
 	WFIFOSET(fd,packet_db[0x2eb].len);
 #endif
 
@@ -11529,7 +11529,7 @@ void clif_partyleader_info(struct party *p, int old_account_id, int account_id)
 {
 	unsigned char buf[16];
 	int i;
-	struct map_session_data *sd = map_id2sd(old_account_id);
+	struct map_session_data *sd = map_id2sd(account_id);
 
 	nullpo_retv(p);
 
@@ -13151,7 +13151,6 @@ static void clif_parse_UseSkillToId(int fd, struct map_session_data *sd, int cmd
 	}
 
 	if( (sd->sc.data[SC_TRICKDEAD].timer != -1 && skillnum != NV_TRICKDEAD) ||
-	    sd->sc.data[SC_BERSERK].timer != -1 ||
 	    sd->sc.data[SC_NOCHAT].timer != -1 ||
 	    sd->sc.data[SC_WEDDING].timer != -1 ||
 	    sd->sc.data[SC_FORCEWALKING].timer != -1 ||
@@ -13305,7 +13304,6 @@ static void clif_parse_UseSkillToPos(int fd, struct map_session_data *sd, int cm
 	}
 
 	if( (sd->sc.data[SC_TRICKDEAD].timer != -1 && skillnum != NV_TRICKDEAD) ||
-	    sd->sc.data[SC_BERSERK].timer != -1 ||
 	    sd->sc.data[SC_NOCHAT].timer != -1 ||
 	    sd->sc.data[SC_WEDDING].timer != -1 ||
 	    sd->sc.data[SC_GOSPEL].timer != -1 ||
@@ -13355,7 +13353,6 @@ static void clif_parse_UseSkillMap(int fd, struct map_session_data *sd, int cmd)
 		return;
 
 	if(sd->sc.data[SC_TRICKDEAD].timer != -1 ||
-	   sd->sc.data[SC_BERSERK].timer != -1 ||
 	   sd->sc.data[SC_NOCHAT].timer != -1 ||
 	   sd->sc.data[SC_WEDDING].timer != -1 ||
 	   sd->sc.data[SC_BASILICA].timer != -1 ||
