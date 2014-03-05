@@ -1313,7 +1313,7 @@ L_RECALC:
 		sd->base_atk += 100;
 	}
 	if(sd->sc.data[SC_GATLINGFEVER].timer != -1) {	// ガトリングフィーバー
-		sd->base_atk += 30+(sd->sc.data[SC_GATLINGFEVER].val1*10);
+		sd->base_atk += 20+(sd->sc.data[SC_GATLINGFEVER].val1*10);
 	}
 	if(sd->sc.data[SC_VOLCANO].timer != -1 && sd->def_ele == ELE_FIRE) {	// ボルケーノ
 		sd->base_atk += sd->sc.data[SC_VOLCANO].val3;
@@ -5487,9 +5487,14 @@ int status_change_start(struct block_list *bl,int type,int val1,int val2,int val
 		case SC_MEAL_INCINT:
 		case SC_MEAL_INCDEX:
 		case SC_MEAL_INCLUK:
-			// 課金料理使用中は効果なし
-			if(sc->data[type - SC_MEAL_INCSTR + SC_MEAL_INCSTR2].timer != -1)
-				return 0;
+			if(sc->data[type - SC_MEAL_INCSTR + SC_MEAL_INCSTR2].timer != -1) {
+				// 効果が低い場合は効果なし
+				if(val1 < sc->data[type - SC_MEAL_INCSTR + SC_MEAL_INCSTR2].val1)
+					return 0;
+				// 同等か高い効果なら使用中の効果を消す
+				else
+					status_change_end(bl, type - SC_MEAL_INCSTR + SC_MEAL_INCSTR2, -1);
+			}
 			calc_flag = 1;
 			break;
 		case SC_MEAL_INCSTR2:	// 課金料理用
@@ -5498,9 +5503,14 @@ int status_change_start(struct block_list *bl,int type,int val1,int val2,int val
 		case SC_MEAL_INCINT2:
 		case SC_MEAL_INCDEX2:
 		case SC_MEAL_INCLUK2:
-			// 通常の食事とは重複しない
-			if(sc->data[type - SC_MEAL_INCSTR2 + SC_MEAL_INCSTR].timer != -1)
-				status_change_end(bl, type - SC_MEAL_INCSTR2 + SC_MEAL_INCSTR, -1);
+			if(sc->data[type - SC_MEAL_INCSTR2 + SC_MEAL_INCSTR].timer != -1) {
+				// 効果が低い場合は効果なし
+				if(val1 < sc->data[type - SC_MEAL_INCSTR2 + SC_MEAL_INCSTR].val1)
+					return 0;
+				// 同等か高い効果なら使用中の効果を消す
+				else
+					status_change_end(bl, type - SC_MEAL_INCSTR2 + SC_MEAL_INCSTR, -1);
+			}
 			calc_flag = 1;
 			break;
 		case SC_ELEMENTFIELD:		/* 属性場 */
