@@ -2092,7 +2092,7 @@ R 07df <name>.24B <job>.l <level>.l <mapName>.16B <option>.l
 R 07e0 <esNo>.w <esName>.24B
 	未調査
 R 07e1 <skill ID>.w <type>.l <lv>.w <sp>.w <range>.w <up>.B
-	0147の上位版（2009-07-15aRagexeRE以降）
+	010eの上位版（2009-07-15aRagexeRE以降）
 R 07e2 <line>.w <val>.l
 	0x291にvalも送れる上位版
 R 07e3 <type>.l
@@ -2239,7 +2239,7 @@ R 0803 <result>.w
 	パーティーブッキング登録要求応答
 S 0804 <level>.w <MapID>.w <job>.w <last_index>.l <result_count>.w
 	パーティーブッキング検索要求
-R 0805 <len>.w <count?>.B { <index>.l <name>.24B <time>.l <level>.w <MapID>.w <job>.6w }.48B*
+R 0805 <len>.w <more>.B { <index>.l <name>.24B <time>.l <level>.w <MapID>.w <job>.6w }.48B*
 	パーティーブッキング検索要求応答
 S 0806
 	パーティーブッキングリスト削除要求
