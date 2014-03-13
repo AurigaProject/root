@@ -89,7 +89,7 @@ SOURCE=..\..\src\char\char.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\charlog_txt.c
+SOURCE=..\..\src\char\txt\charlog_txt.c
 # End Source File
 # Begin Source File
 
@@ -149,47 +149,47 @@ SOURCE=..\..\src\char\int_quest.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\accregdb_txt.c
+SOURCE=..\..\src\char\txt\accregdb_txt.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\chardb_txt.c
+SOURCE=..\..\src\char\txt\chardb_txt.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\guilddb_txt.c
+SOURCE=..\..\src\char\txt\guilddb_txt.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\homundb_txt.c
+SOURCE=..\..\src\char\txt\homundb_txt.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\maildb_txt.c
+SOURCE=..\..\src\char\txt\maildb_txt.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\mercdb_txt.c
+SOURCE=..\..\src\char\txt\mercdb_txt.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\partydb_txt.c
+SOURCE=..\..\src\char\txt\partydb_txt.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\petdb_txt.c
+SOURCE=..\..\src\char\txt\petdb_txt.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\questdb_txt.c
+SOURCE=..\..\src\char\txt\questdb_txt.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\statusdb_txt.c
+SOURCE=..\..\src\char\txt\statusdb_txt.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\storagedb_txt.c
+SOURCE=..\..\src\char\txt\storagedb_txt.c
 # End Source File
 # Begin Source File
 
@@ -197,7 +197,7 @@ SOURCE=..\..\src\char\inter.c
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\interlog_txt.c
+SOURCE=..\..\src\char\txt\interlog_txt.c
 # End Source File
 # Begin Source File
 
@@ -301,47 +301,47 @@ SOURCE=..\..\src\char\int_quest.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\accregdb_txt.h
+SOURCE=..\..\src\char\txt\accregdb_txt.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\chardb_txt.h
+SOURCE=..\..\src\char\txt\chardb_txt.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\guilddb_txt.h
+SOURCE=..\..\src\char\txt\guilddb_txt.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\homundb_txt.h
+SOURCE=..\..\src\char\txt\homundb_txt.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\maildb_txt.h
+SOURCE=..\..\src\char\txt\maildb_txt.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\mercdb_txt.h
+SOURCE=..\..\src\char\txt\mercdb_txt.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\partydb_txt.h
+SOURCE=..\..\src\char\txt\partydb_txt.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\petdb_txt.h
+SOURCE=..\..\src\char\txt\petdb_txt.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\questdb_txt.h
+SOURCE=..\..\src\char\txt\questdb_txt.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\statusdb_txt.h
+SOURCE=..\..\src\char\txt\statusdb_txt.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\src\char\storagedb_txt.h
+SOURCE=..\..\src\char\txt\storagedb_txt.h
 # End Source File
 # Begin Source File
 
