@@ -19,8 +19,6 @@
  *
  */
 
-#ifdef TXT_ONLY
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,7 +29,7 @@
 #include "malloc.h"
 #include "journal.h"
 
-#include "questdb.h"
+#include "questdb_txt.h"
 
 static char quest_txt[1024]="save/quest.txt";
 static struct dbt *quest_db = NULL;
@@ -120,7 +118,7 @@ static int questdb_fromstr(char *str, struct quest *q)
 // ----------------------------------------------------------
 // クエストデータ用ジャーナルのロールフォワード用コールバック関数
 // ----------------------------------------------------------
-int questdb_journal_rollforward( int key, void* buf, int flag )
+int quest_journal_rollforward( int key, void* buf, int flag )
 {
 	struct quest *q = (struct quest *)numdb_search( quest_db, key );
 
@@ -196,7 +194,7 @@ int questdb_txt_init(void)
 			printf("int_quest: journal: roll-forward (%d)\n", c );
 
 			// ロールフォワードしたので、txt データを保存する ( journal も新規作成される)
-			quest_txt_sync();
+			questdb_txt_sync();
 		}
 		else
 		{
@@ -359,5 +357,3 @@ int questdb_txt_config_read_sub(const char *w1, const char *w2)
 
 	return 1;
 }
-
-#endif
