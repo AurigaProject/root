@@ -741,6 +741,11 @@ static int battle_calc_damage(struct block_list *src,struct block_list *bl,int d
 				}
 			}
 		}
+
+		// –¾‹¾Ž~…(Šm—¦Žb’è)
+		if(sc->data[SC_MEIKYOUSISUI].timer != -1 && atn_rand()%100 < sc->data[SC_MEIKYOUSISUI].val1 * 2) {
+			damage = 0;
+		}
 	}
 
 	if(damage > 0) {
@@ -2864,7 +2869,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		case KO_BAKURETSU:		// ”š—ô‹ê–³
 			{
 				int rate = (src_sd)? pc_checkskill(src_sd,NJ_TOBIDOUGU) : 1;
-				rate *= 10 * skill_lv;
+				rate *= 50 * skill_lv;
 				DMG_FIX( rate, 100 );
 			}
 			break;
