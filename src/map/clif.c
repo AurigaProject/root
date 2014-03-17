@@ -3767,7 +3767,6 @@ void clif_move(struct block_list *bl)
 static void clif_quitsave(struct map_session_data *sd)
 {
 	map_quit(sd);
-	chrif_chardisconnect(sd);
 
 	return;
 }
@@ -7202,7 +7201,7 @@ static void clif_getareachar_pc(struct map_session_data* sd,struct map_session_d
 		}
 		
 		if(dstsd->sc.data[SC_KYOUGAKU].timer != -1)	// 驚愕
-			clif_status_change_id(sd,dstsd->bl.id,SI_KYOUGAKU,1,0,dstsd->sc.data[SI_KYOUGAKU].val1,0,0);
+			clif_status_change_id(sd,dstsd->bl.id,SI_KYOUGAKU,1,0,dstsd->sc.data[SC_KYOUGAKU].val1,0,0);
 		else if(dstsd->sc.data[SC_MONSTER_TRANSFORM].timer != -1)	// モンスター変身システム
 			clif_status_change_id(sd,dstsd->bl.id,SI_MONSTER_TRANSFORM,1,0,dstsd->sc.data[SC_MONSTER_TRANSFORM].val1,0,0);
 		else if(dstsd->sc.data[SC_ALL_RIDING].timer != -1)	// 搭乗システム
@@ -15095,8 +15094,7 @@ static void clif_parse_Restart(int fd,struct map_session_data *sd, int cmd)
 			unit_free(&sd->eld->bl, 0);
 		}
 		unit_free(&sd->bl, 2);
-		chrif_save(sd, 1);
-		chrif_charselectreq(sd);
+		chrif_save(sd, 2);
 		sd->state.waitingdisconnect = 1;
 		break;
 	}
@@ -18733,15 +18731,6 @@ static int clif_disconnect(int fd)
 
 	if(sd && sd->state.auth) {
 		clif_quitsave(sd);
-	}
-	close(fd);
-
-	if(sd) {
-		struct map_session_data *tmpsd = map_id2sd(sd->bl.id);
-		if(tmpsd == sd)
-			map_deliddb(&sd->bl);
-		if(sd->bl.prev)
-			map_delblock(&sd->bl);
 	}
 
 	return 0;
