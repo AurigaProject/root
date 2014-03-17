@@ -758,7 +758,7 @@ int npc_globalmessage(const char *name,char *mes)
 
 	len = strlen(temp);
 	snprintf(temp+len, sizeof(temp)-len, " : %s", mes);
-	clif_GlobalMessage(&nd->bl,temp);
+	clif_GlobalMessage(&nd->bl,temp,AREA_CHAT_WOC);
 
 	return 0;
 }
@@ -1017,7 +1017,7 @@ int npc_selllist(struct map_session_data *sd,int n,unsigned short *item_list)
 		nameid = inventory[idx].nameid;
 		if (nameid <= 0 || (item_data = itemdb_exists(nameid)) == NULL)
 			return 1;
-		if (itemdb_isdropable(nameid) == 0)
+		if (itemdb_issellable(nameid) == 0)
 			return 1;
 		if (item_data->value_sell < 0)
 			return 1;
